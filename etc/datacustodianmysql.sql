@@ -602,9 +602,9 @@ CREATE TABLE `usage_summaries` (
   `commodity` varchar(255) DEFAULT NULL,
   `usage_point_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `UK_7b7325ca02a9414ea62fcabc984` (`uuid`),
-  KEY `FK_73bd63f6333f44ff8c7f628f79d` (`usage_point_id`),
-  CONSTRAINT `FK_73bd63f6333f44ff8c7f628f79d` FOREIGN KEY (`usage_point_id`) REFERENCES `usage_points` (`id`)
+  UNIQUE KEY `UK_7b7325ca02a9414ea62fcabc985` (`uuid`),
+  KEY `FK_73bd63f6333f44ff8c7f628f79e` (`usage_point_id`),
+  CONSTRAINT `FK_73bd63f6333f44ff8c7f628f79e` FOREIGN KEY (`usage_point_id`) REFERENCES `usage_points` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
