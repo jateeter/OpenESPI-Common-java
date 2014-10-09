@@ -89,6 +89,7 @@ import org.hibernate.annotations.LazyCollectionOption;
  *         &lt;element name="ratchetDemand" type="{http://naesb.org/espi}SummaryMeasurement" minOccurs="0"/>
  *         &lt;element name="ratchetDemandPeriod" type="{http://naesb.org/espi}DateTimeInterval" minOccurs="0"/>
  *         &lt;element name="statusTimeStamp" type="{http://naesb.org/espi}TimeType"/>
+ *         &lt;element name="commodity" type="{http://naesb.org/espi}Commodity" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -107,7 +108,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 		"currentDayOverallConsumption", "peakDemand",
 		"previousDayLastYearOverallConsumption", "previousDayNetConsumption",
 		"previousDayOverallConsumption", "ratchetDemand", "qualityOfReading",
-		"ratchetDemandPeriod", "statusTimeStamp" })
+		"ratchetDemandPeriod", "statusTimeStamp", "commodity" })
 @Entity
 @Table(name = "electric_power_usage_summaries", uniqueConstraints = { @UniqueConstraint(columnNames = { "uuid" }) })
 @XmlJavaTypeAdapter(UsageSummaryAdapter.class)
@@ -236,6 +237,9 @@ public class UsageSummary extends IdentifiedObject {
 	@Embedded
 	protected SummaryMeasurement ratchetDemand;
 
+	@Embedded
+	protected String commodity;
+	
 	@XmlTransient
 	@ManyToOne
 	@JoinColumn(name = "usage_point_id")
@@ -651,6 +655,25 @@ public class UsageSummary extends IdentifiedObject {
 	 */
 	public void setStatusTimeStamp(long value) {
 		this.statusTimeStamp = value;
+	}
+
+	/**
+	 * Gets the value of the commodity property.
+	 *
+	 * @return possible object is {@link String }
+	 */
+	public String getCommodity() {
+		return commodity;
+	}
+
+	/**
+	 * Sets the value of the commodity property.
+	 *
+	 * @param value
+	 *            allowed object is {@link String }
+	 */
+	public void setCommodity(String value) {
+		this.commodity = value;
 	}
 
 	@Override

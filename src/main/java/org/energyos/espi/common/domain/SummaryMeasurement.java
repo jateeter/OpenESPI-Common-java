@@ -24,6 +24,8 @@
 
 package org.energyos.espi.common.domain;
 
+import java.net.URI;
+
 import javax.persistence.Embeddable;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -46,6 +48,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="timeStamp" type="{http://naesb.org/espi}TimeType" minOccurs="0"/>
  *         &lt;element name="uom" type="{http://naesb.org/espi}UnitSymbol" minOccurs="0"/>
  *         &lt;element name="value" type="{http://naesb.org/espi}Int48" minOccurs="0"/>
+ *         &lt;element name="readingTypeRef" type="xs:anyURI" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -57,7 +60,8 @@ import javax.xml.bind.annotation.XmlType;
         "powerOfTenMultiplier",
         "timeStamp",
         "uom",
-        "value"
+        "value",
+        "readingTypeRef"
 })
 @Embeddable
 public class SummaryMeasurement
@@ -67,6 +71,7 @@ public class SummaryMeasurement
     protected Long timeStamp;
     protected String uom;
     protected Long value;
+    protected URI readingTypeRef;
 
     public SummaryMeasurement() {
     }
@@ -158,4 +163,23 @@ public class SummaryMeasurement
         this.value = value;
     }
 
+    /**
+     * Gets the value of the readingTypeRef property.
+     *
+     * @return possible object is
+     *         {@link URI }
+     */
+    public URI getReadingTypeRef() {
+        return readingTypeRef;
+    }
+
+    /**
+     * Sets the value of the value property.
+     *
+     * @param value allowed object is
+     * {@link URI }
+     */
+    public void setReadingTypeRef(URI readingTypeRef) {
+        this.readingTypeRef = readingTypeRef;
+    }
 }

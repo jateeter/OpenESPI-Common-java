@@ -7,6 +7,7 @@
 
 package org.energyos.espi.common.domain;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -41,6 +42,7 @@ import org.energyos.espi.common.models.atom.adapters.LineItemAdapter;
  *         &lt;element name="rounding" type="{http://naesb.org/espi}Int48" minOccurs="0"/>
  *         &lt;element name="dateTime" type="{http://naesb.org/espi}TimeType"/>
  *         &lt;element name="note" type="{http://naesb.org/espi}String256"/>
+ *         &lt;element name="measurement" type="{http://naesb.org/espi}SummaryMeasurement" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -54,7 +56,8 @@ import org.energyos.espi.common.models.atom.adapters.LineItemAdapter;
     "amount",
     "rounding",
     "dateTime",
-    "note"
+    "note",
+    "measurement"
 })
 @Entity
 @Table(name = "line_item")
@@ -72,6 +75,8 @@ public class LineItem {
     protected long dateTime;
     @XmlElement(required = true)
     protected String note;
+	@Embedded
+    protected SummaryMeasurement measurement;
     
     
     @XmlTransient
@@ -158,5 +163,26 @@ public class LineItem {
     public void setNote(String value) {
         this.note = value;
     }
+    
+	/**
+	 * Gets the value of the measurement property.
+	 *
+	 * @return possible object is {@link SummaryMeasurement }
+	 *
+	 */
+	public SummaryMeasurement getMeasurement() {
+		return measurement;
+	}
+
+	/**
+	 * Sets the value of the measurement property.
+	 *
+	 * @param measurement
+	 *            allowed object is {@link SummaryMeasurement }
+	 *
+	 */
+	public void setMeasurement(SummaryMeasurement measurement) {
+		this.measurement = measurement;
+	}
 
 }
